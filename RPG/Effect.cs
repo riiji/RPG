@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace RPG
 {
+    /// <summary>
+    /// Эффекты
+    /// </summary>
     static class Effect
     {
-        public delegate void Effects(int count); 
+        public delegate void Effects(int count);
 
-        
+
 
     }
 }

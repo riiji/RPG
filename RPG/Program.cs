@@ -12,7 +12,7 @@ namespace RPG
     {
         static void Main(string[] args)
         {
-        }
+        } 
 
     }
 }

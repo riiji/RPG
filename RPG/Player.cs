@@ -8,7 +8,18 @@ namespace RPG
 {
     class PlayerStats
     {
-        public PlayerStats(int Id, Classes Role, int Health = 100, int MaxHealth = 100, int Xp = 0, int MaxXp = 100, int Level = 1, int gold = 0)
+        /// <summary>
+        /// Создание характеристики персонажа
+        /// </summary>
+        /// <param name="Id">ID персонажа</param>
+        /// <param name="Role">Класс персонажа</param>
+        /// <param name="Health">Здоровья персонажа</param>
+        /// <param name="MaxHealth">Максимальное здоровье персонажа</param>
+        /// <param name="Xp">Опыт персонажа</param>
+        /// <param name="MaxXp">Максимальный опыт персонажа</param>
+        /// <param name="Level">Уровень персонажа</param>
+        /// <param name="gold">Золото персонажа</param>
+        public PlayerStats(int Id, Classes Role, int Health = 100, int MaxHealth = 100, int Xp = 0, int MaxXp = 100, int Level = 1, int Gold = 0)
         {
             this.Id = Id;
             this.Health = Health;
@@ -22,12 +33,12 @@ namespace RPG
         }
 
         /// <summary>
-        /// Player ID
+        /// ID персонажа
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Player Health + Additional
+        /// Текущее здоровье персонажа
         /// </summary>
         public int GetHealth
         {
@@ -36,8 +47,9 @@ namespace RPG
                 return Health + AdditionalHealth;
             }
         }
+
         /// <summary>
-        /// Player MaxHealth + Additional
+        /// Текущее максимальное здоровья персонажа
         /// </summary>
         public int GetMaxHealth
         {
@@ -46,6 +58,7 @@ namespace RPG
                 return MaxHealth + AdditionalHealth;
             }
         }
+
 
         public int Health { get; set; }
         public int MaxHealth { get; set; }
@@ -104,9 +117,9 @@ namespace RPG
         }
 
         /// <summary>
-        /// Adding health to player
+        /// Добавить здоровье персонажу
         /// </summary>
-        /// <param name="count">Count of adding health</param>
+        /// <param name="count">Количество здоровья</param>
         public void AddHealth(int count)
         {
             if (count < 0)
@@ -120,9 +133,9 @@ namespace RPG
         }
 
         /// <summary>
-        /// Substract player health
+        /// Вычесть здоровье персонажа
         /// </summary>
-        /// <param name="count">Count of health</param>
+        /// <param name="count">Количество здоровья</param>
         public void SubHealth(int count)
         {
             if (count < 0)
@@ -136,9 +149,9 @@ namespace RPG
         }
 
         /// <summary>
-        /// Adding experience to player 
+        /// Добавить опыт персонажа 
         /// </summary>
-        /// <param name="count">Count of adding experience</param>
+        /// <param name="count">Количество опыта</param>
         public void AddingXp(int count)
         {
             Stats.Xp += count;
@@ -149,9 +162,9 @@ namespace RPG
         }
 
         /// <summary>
-        /// Substract experience from player
+        /// Вычесть опыт персонажа
         /// </summary>
-        /// <param name="count">Count of experience</param>
+        /// <param name="count">Количество опыта</param>
         public void SubstractXp(int count)
         {
             Stats.Xp -= count;
@@ -161,7 +174,10 @@ namespace RPG
             }
         }
 
-
+        /// <summary>
+        /// Перемещение персонажа в другую локацию
+        /// </summary>
+        /// <param name="id">ID локации</param>
         public void Travel(int id)
         {
             int dst = Map.distance[(int)Location, id];
@@ -176,6 +192,10 @@ namespace RPG
             Location = (Location)id;
         }
 
+        /// <summary>
+        /// Получить награду
+        /// </summary>
+        /// <param name="reward">Награда</param>
         public void GetReward(Reward reward)
         {
             this.Stats.Gold += reward.GoldAmount;
@@ -187,6 +207,10 @@ namespace RPG
             }
         }
 
+        /// <summary>
+        /// Надеть предмет
+        /// </summary>
+        /// <param name="item">Предмет</param>
         public void Equip(Item item)
         {
             if (Class.EquipForClass(this, item))
@@ -241,6 +265,10 @@ namespace RPG
                 return;
         }
 
+        /// <summary>
+        /// Снять вещь 
+        /// </summary>
+        /// <param name="type">Тип предмета</param>
         public void UnEquip(Type type)
         {
             if (type == typeof(Helmet))
@@ -289,6 +317,9 @@ namespace RPG
 
         }
 
+        /// <summary>
+        /// Обновление характеристик персонажа
+        /// </summary>
         public void StatsUpdate()
         {
             this.Stats.MaxHealth = LevelSystem.HealthbyLevel(this.Stats.Level);

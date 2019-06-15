@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPG
 {
+    /// <summary>
+    /// Список классов
+    /// </summary>
     enum Classes
     {
         Warrior,
@@ -22,8 +25,17 @@ namespace RPG
         DemonHunter
     }
 
+    /// <summary>
+    /// Класс
+    /// </summary>
     class Class
     {
+        /// <summary>
+        /// Может ли этот класс надеть этот предмет?
+        /// </summary>
+        /// <param name="player">Персонаж</param>
+        /// <param name="item">Надеваемый предмет</param>
+        /// <returns></returns>
         public static bool EquipForClass(Player player, Item item)
         {
             if (item is Armor armor)
@@ -43,7 +55,7 @@ namespace RPG
                         return true;
                 }
 
-                if(role==Classes.Druid)
+                if (role == Classes.Druid)
                 {
                     if (armorType == ArmorType.Chain || armorType == ArmorType.Plate)
                         return false;
@@ -51,7 +63,7 @@ namespace RPG
                         return true;
                 }
 
-                if(role==Classes.Hunter)
+                if (role == Classes.Hunter)
                 {
                     if (armorType == ArmorType.Chain || armorType == ArmorType.Plate)
                         return false;
@@ -59,7 +71,7 @@ namespace RPG
                         return true;
                 }
 
-                if(role==Classes.Mage)
+                if (role == Classes.Mage)
                 {
                     if (armorType == ArmorType.Cloth)
                         return true;
@@ -67,7 +79,7 @@ namespace RPG
                         return false;
                 }
 
-                if(role==Classes.Monk)
+                if (role == Classes.Monk)
                 {
                     if (armorType == ArmorType.Plate || armorType == ArmorType.Chain)
                         return false;
@@ -75,12 +87,12 @@ namespace RPG
                         return true;
                 }
 
-                if(role==Classes.Paladin)
+                if (role == Classes.Paladin)
                 {
                     return true;
                 }
 
-                if(role==Classes.Priest)
+                if (role == Classes.Priest)
                 {
                     if (armorType == ArmorType.Cloth)
                         return true;
@@ -88,7 +100,7 @@ namespace RPG
                         return false;
                 }
 
-                if(role==Classes.Rogue)
+                if (role == Classes.Rogue)
                 {
                     if (armorType == ArmorType.Leather || armorType == ArmorType.Cloth)
                         return true;
@@ -96,7 +108,7 @@ namespace RPG
                         return false;
                 }
 
-                if(role==Classes.Shaman)
+                if (role == Classes.Shaman)
                 {
                     if (armorType == ArmorType.Plate)
                         return false;
@@ -104,7 +116,7 @@ namespace RPG
                         return true;
                 }
 
-                if(role==Classes.Warlock)
+                if (role == Classes.Warlock)
                 {
                     if (armorType == ArmorType.Cloth)
                         return true;
@@ -112,7 +124,7 @@ namespace RPG
                         return false;
                 }
 
-                if(role==Classes.Warrior)
+                if (role == Classes.Warrior)
                 {
                     return true;
                 }
@@ -125,7 +137,7 @@ namespace RPG
                 WeaponType weaponType = weapon.weaponStats.weaponType;
 
 
-                if(role==Classes.DeathKnight)
+                if (role == Classes.DeathKnight)
                 {
                     if (weaponType == WeaponType.Axe || weaponType == WeaponType.Sword)
                     {
@@ -135,7 +147,7 @@ namespace RPG
                         return false;
                 }
 
-                if(role==Classes.DemonHunter)
+                if (role == Classes.DemonHunter)
                 {
                     if (weaponType == WeaponType.Axe || weaponType == WeaponType.Sword || weaponType == WeaponType.Dagger)
                         return true;
@@ -143,7 +155,7 @@ namespace RPG
                         return false;
                 }
 
-                if(role==Classes.Druid)
+                if (role == Classes.Druid)
                 {
                     if (weaponType == WeaponType.Staff || weaponType == WeaponType.Wand)
                         return true;
@@ -185,7 +197,7 @@ namespace RPG
 
                 if (role == Classes.Priest)
                 {
-                    if (weaponType == WeaponType.Staff || weaponType == WeaponType.Wand || weaponType==WeaponType.Dagger)
+                    if (weaponType == WeaponType.Staff || weaponType == WeaponType.Wand || weaponType == WeaponType.Dagger)
                         return true;
                     else
                         return false;
@@ -209,7 +221,7 @@ namespace RPG
 
                 if (role == Classes.Warlock)
                 {
-                    if (weaponType == WeaponType.Staff || weaponType == WeaponType.Wand || weaponType==WeaponType.Dagger)
+                    if (weaponType == WeaponType.Staff || weaponType == WeaponType.Wand || weaponType == WeaponType.Dagger)
                         return true;
                     else
                         return false;

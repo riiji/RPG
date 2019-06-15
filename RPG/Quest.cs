@@ -8,7 +8,14 @@ namespace QuestEngine
 {
     class Quest
     {
+        /// <summary>
+        /// Описание задания
+        /// </summary>
         string Description { get; set; }
+
+        /// <summary>
+        /// Награда за задание
+        /// </summary>
         RPG.Reward reward { get; set; }
     }
 
