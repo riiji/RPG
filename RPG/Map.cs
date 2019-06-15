@@ -11,8 +11,71 @@ namespace RPG
     /// </summary>
     class TownObject
     {
+        public TownObject(string Name)
+        {
+            this.Name = Name;
+        }
+
+
+
+
+        public string Name { get; set; }
+    }
+
+    /// <summary>
+    /// Таверна
+    /// </summary>
+    class Tavern : TownObject
+    {
+        /// <summary>
+        /// Создание таверны
+        /// </summary>
+        /// <param name="Name">Название таверны</param>
+        public Tavern(string Name)
+            : base(Name)
+        {
+
+        }
+
+
+        /// <summary>
+        /// Магазин таверны
+        /// </summary>
+        List<Item> TavernShop;
+
+        /// <summary>
+        /// Квесты таверны
+        /// </summary>
+        List<QuestEngine.Quest> quests;
+
+
 
     }
+
+    /// <summary>
+    /// Магазин
+    /// </summary>
+    class Shop : TownObject
+    {
+
+        /// <summary>
+        /// Создание магазина
+        /// </summary>
+        /// <param name="Name">Название магазина</param>
+        public Shop(string Name)
+            :base(Name)
+        {
+
+        }
+
+        /// <summary>
+        /// Предметы из магазина (оружие, броня и.т.п)
+        /// </summary>
+        List<Item> ShopItems;
+
+    }
+
+
 
     /// <summary>
     /// Город
