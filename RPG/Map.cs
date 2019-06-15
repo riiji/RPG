@@ -6,14 +6,27 @@ using System.Threading.Tasks;
 
 namespace RPG
 {
+    /// <summary>
+    /// Объект города
+    /// </summary>
     class TownObject
     {
 
     }
 
+    /// <summary>
+    /// Город
+    /// </summary>
     class Town
     {
-        public Town(string Name, Coords coord, int Id,List<TownObject> town = null)
+        /// <summary>
+        /// Создание города
+        /// </summary>
+        /// <param name="Name">Название города</param>
+        /// <param name="coord">Координаты города</param>
+        /// <param name="Id">ID города</param>
+        /// <param name="town">Список объектов города</param>
+        public Town(string Name, Coords coord, int Id, List<TownObject> town = null)
         {
             this.Name = Name;
             this.coord = coord;
@@ -22,37 +35,84 @@ namespace RPG
                 this.town = town;
         }
 
+        /// <summary>
+        /// Название города
+        /// </summary>
         public string Name { get; set; }
 
+
+        /// <summary>
+        /// Координаты города
+        /// </summary>
         public Coords coord { get; set; }
 
+
+        /// <summary>
+        /// Список объектов города
+        /// </summary>
         List<TownObject> town { get; set; } = new List<TownObject>();
 
+
+        /// <summary>
+        /// ID города
+        /// </summary>
         public int Id { get; set; }
     }
 
+    /// <summary>
+    /// Координаты
+    /// </summary>
     class Coords
     {
+        /// <summary>
+        /// Создание координат
+        /// </summary>
+        /// <param name="xCord">Координата X</param>
+        /// <param name="yCord">Координата Y</param>
         public Coords(int xCord, int yCord)
         {
             this.xCord = xCord;
             this.yCord = yCord;
         }
 
+        /// <summary>
+        /// Координата X
+        /// </summary>
         public int xCord { get; set; }
+
+        /// <summary>
+        /// Координата Y
+        /// </summary>
         public int yCord { get; set; }
 
     }
 
+    /// <summary>
+    /// Карта игры
+    /// </summary>
     static class Map
     {
+        /// <summary>
+        /// Расстояние между городами
+        /// </summary>
         public static int[,] distance;
 
-        public static void AddTown(string Name, Coords coord,int Id, List<TownObject> town = null)
+        /// <summary>
+        /// Добавить город
+        /// </summary>
+        /// <param name="Name">Название города</param>
+        /// <param name="coord">Координаты города</param>
+        /// <param name="Id">ID города</param>
+        /// <param name="town">Список объектов города</param>
+        public static void AddTown(string Name, Coords coord, int Id, List<TownObject> town = null)
         {
-            Towns.Add(new Town(Name, coord, Id,town));
+            Towns.Add(new Town(Name, coord, Id, town));
         }
 
+        /// <summary>
+        /// Убрать город 
+        /// </summary>
+        /// <param name="Name">Название города</param>
         public static void RemoveTown(string Name)
         {
             Town finded = Towns.Find(x => x.Name == Name);
@@ -60,6 +120,9 @@ namespace RPG
                 Towns.Remove(finded);
         }
 
+        /// <summary>
+        /// Создание карты
+        /// </summary>
         public static void CreateMap()
         {
             string[] mapobjects = System.IO.File.ReadAllLines(@"C:\Users\riiji\source\repos\RPG\RPG\epicgame.map");
@@ -68,7 +131,7 @@ namespace RPG
                 string[] s1, s2;
                 s1 = mapobjects[i].Split(':');
                 s2 = s1[0].Split(';');
-                AddTown(s1[1], new Coords(Int32.Parse(s2[0]), Int32.Parse(s2[1])), i,null);
+                AddTown(s1[1], new Coords(Int32.Parse(s2[0]), Int32.Parse(s2[1])), i, null);
             }
             distance = new int[mapobjects.Length, mapobjects.Length];
 
@@ -84,15 +147,20 @@ namespace RPG
 
                     int dst = (int)Math.Sqrt(Math.Abs(xCordi - xCordj) * Math.Abs(xCordi - xCordj) + Math.Abs(yCordi - yCordj) * Math.Abs(yCordi - yCordj));
 
-                    distance[i,j] = dst;
-                    distance[j,i] = dst;
+                    distance[i, j] = dst;
+                    distance[j, i] = dst;
 
                 }
-                
+
             }
 
         }
 
+        /// <summary>
+        /// Вернуть ID города по имени города
+        /// </summary>
+        /// <param name="s">Имя города</param>
+        /// <returns>ID города</returns>
         private static int IdTownByName(string s)
         {
             Town t1 = Towns.Find(x => x.Name == s);
@@ -101,12 +169,24 @@ namespace RPG
             return -1;
         }
 
+        /// <summary>
+        /// Получить расстояние между городами
+        /// </summary>
+        /// <param name="id1">ID первого города</param>
+        /// <param name="id2">ID второго города</param>
+        /// <returns></returns>
         public static int GetDistance(int id1, int id2)
         {
             return distance[id1, id2];
         }
 
-        public static int GetDistance(string n1,string n2)
+        /// <summary>
+        /// Получить расстояние между городами
+        /// </summary>
+        /// <param name="n1">Название первого города</param>
+        /// <param name="n2">Название второго города</param>
+        /// <returns></returns>
+        public static int GetDistance(string n1, string n2)
         {
             int fid = IdTownByName(n1);
             int sid = IdTownByName(n2);
@@ -116,6 +196,9 @@ namespace RPG
             return -1;
         }
 
+        /// <summary>
+        /// Список объектов города
+        /// </summary>
         public static List<Town> Towns { get; set; } = new List<Town>();
     }
 

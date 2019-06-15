@@ -8,7 +8,13 @@ namespace RPG
 {
     class Reward
     {
-        public Reward(int GoldAmount = 0, int XpAmount = 0, List<Item> RewardItems=null)
+        /// <summary>
+        /// Создание награды 
+        /// </summary>
+        /// <param name="GoldAmount">Золото за выполнение</param>
+        /// <param name="XpAmount">Опыт за выполнение</param>
+        /// <param name="RewardItems">Предметы за выполнение</param>
+        public Reward(int GoldAmount = 0, int XpAmount = 0, List<Item> RewardItems = null)
         {
             this.GoldAmount = GoldAmount;
             this.XpAmount = XpAmount;

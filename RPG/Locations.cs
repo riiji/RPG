@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPG
 {
+    /// <summary>
+    /// Локации города
+    /// </summary>
     enum Location
     {
         Newborn,
